@@ -16,7 +16,7 @@
         return service;
 
         function getLocation(address) {
-            const errorResponse = angular.merge({}, address, { successful: false, location: { lat: null, lng: null } });
+            const errorResponse = _.merge(address, { successful: false, location: { lat: null, lng: null } });
             const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
                 address.houseNumber + '+' +
                 address.street + ',+' +
@@ -33,7 +33,7 @@
             function successCallback(response) {
                 const location = _.get(response, 'data.results[0].geometry.location');
                 return location ?
-                    angular.merge({}, address, { successful: true, location: { lat: location.lat, lng: location.lng } }) :
+                    _.merge(address, { successful: true, location: { lat: location.lat, lng: location.lng } }) :
                     errorResponse;
             }
 
