@@ -1,17 +1,33 @@
 (function () {
     'use strict';
 
-    angular.module('mcmakler')
-        .controller('TestCtrl', testController)
-    ;
+    angular
+        .module('mcmakler')
+        .controller('TestCtrl', testController);
 
-    function testController($log)
-    {
-        activate();
+    function testController(googleMaps, $timeout) {
+        var vm = this;
+        vm.submit = submit;
+        vm.address = {
+            street: null,
+            houseNumber: null,
+            postalCode: null,
+            city: null
+        };
 
-        function activate()
-        {
-            $log.debug('Hi! I\'m your test controller.');
+        const MESSAGE_DURATION = 2000;
+
+        function submit() {
+            googleMaps.getLocation(vm.address).then(onLocationReceived);
+
+            function onLocationReceived(address) {
+                vm.address = address;
+                vm.displayAlert = true;
+
+                $timeout(function() {
+                    vm.displayAlert = false;
+                }, MESSAGE_DURATION);
+            }
         }
     }
 

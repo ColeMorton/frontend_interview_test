@@ -1,7 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('mcmakler', [])
-    ;
+    angular.module('mcmakler', ['googleMaps']);
 
 })();
