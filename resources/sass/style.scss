@@ -1,2 +1,37 @@
 @import "style/mixins";
 @import "style/variables";
+
+#addressForm {
+    background-color: #eeeeec;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    button {
+      background-color: #feb901;
+      color: #fff;
+      font-size: large;
+    }
+}
+
+#alertBox {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add {
+    -webkit-transition: 0.5s ease-in-out all;
+    -moz-transition: 0.5s ease-in-out all;
+    -o-transition: 0.5s ease-in-out all;
+    transition: 0.5s ease-in-out all;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
