@@ -5,7 +5,7 @@
         // vendor packages
         // 'ngResource',
         // 'ui.router',
-        
+        'ngAnimate',
         'mcmakler'
     ])
 })();
