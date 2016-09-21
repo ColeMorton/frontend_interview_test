@@ -18,41 +18,82 @@
 
 <body>
 
-<div class="container" ng-controller="TestCtrl">
-    <form>
-        <div class="form-group">
-            <label for="inputText1">Street</label>
-            <input type="text" class="form-control" id="inputText1" placeholder="Street" ng-model="street">
-        </div>
-        <div class="form-group">
-            <label for="inputText2">House Number</label>
-            <input type="text" class="form-control" id="inputText2" placeholder="House Number" ng-model="housenumber">
-        </div>
-        <div class="form-group">
-            <label for="inputText3">Postal Code</label>
-            <input type="text" class="form-control" id="inputText3" placeholder="Postal Code" ng-model="postalcode">
-        </div>
-        <div class="form-group">
-            <label for="inputText4">City</label>
-            <input type="text" class="form-control" id="inputText4" placeholder="City" ng-model="city">
-        </div>
-        <div class="form-group">
-            <label for="radio1">Radio1</label>
-            <input type="radio" id="radio1" name="radio" ng-model="radio" value="1">
+    <div class="container" ng-controller="TestCtrl as vm">
+        <form id="addressForm" class="form-horizontal" ng-submit="vm.submit()">
+            <div class="form-group">
+                <label for="inputText1" class="col-sm-5 control-label" required>Street</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputText1" placeholder="Street" ng-required="true" ng-model="vm.address.street">
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputText2" class="col-sm-5 control-label" required>House Number</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputText2" placeholder="House Number" ng-required="true" ng-model="vm.address.houseNumber">
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputText3" class="col-sm-5 control-label">Postal Code</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputText3" placeholder="Postal Code" ng-required="true" ng-model="vm.address.postalCode">
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputText4" class="col-sm-5 control-label">City</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputText4" placeholder="City" ng-required="true" ng-model="vm.address.city">
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inlineRadioOptions" class="col-sm-5 control-label">Radio Buttons</label>
+                <div class="col-sm-6">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                    </label>
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inlineCheckbox1" class="col-sm-5 control-label">Radio Buttons</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+                    </label>
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-6">
+                    <button type="submit" class="btn btn-default btn-block">Submit</button>
+                </div>
+            </div>
+        </form>
 
-            <label for="radio2">Radio2</label>
-            <input type="radio" id="radio2" name="radio" ng-model="radio" value="2">
+        <div id="displayCoordinates" class="alert alert-info ng-cloak fadein"  ng-show="vm.address.successful" role="alert">
+            The coordinates for this address are: {{vm.address.location.lat}}, {{vm.address.location.lng}}
         </div>
-        <div class="form-group">
-            <label for="check1">Check1</label>
-            <input type="checkbox" id="check1" ng-model="check">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-</div>
 
-<script src="js/angular.js"></script>
-<script src="js/scripts.js"></script>
+        <div id="alertBox" class="ng-cloak">
+            <div class="alert alert-success fadein fadeout" ng-show="vm.displayAlert && vm.address.successful == true" role="alert">You have provided a valid address</div>
+            <div class="alert alert-danger fadein fadeout" ng-show="vm.displayAlert && vm.address.successful == false" role="alert">You have provided an invalid address, please try again</div>
+        </div>
+    </div>
+
+    <script src="js/angular.js"></script>
+    <script src="js/scripts.js"></script>
 
 </body>
 
