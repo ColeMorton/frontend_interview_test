@@ -24,9 +24,11 @@
                 vm.address = address;
                 vm.displayAlert = true;
 
-                $timeout(function() {
+                const hideAlert = function() {
                     vm.displayAlert = false;
-                }, MESSAGE_DURATION);
+                };
+
+                $timeout(hideAlert, MESSAGE_DURATION);
             }
         }
     }
